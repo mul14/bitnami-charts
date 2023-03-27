@@ -3164,19 +3164,27 @@ config:
   ##
   existingStylesConfigmap: ""
 
-  ## @param config.tlsCerts TLS certificates used to verify the authenticity of the repository servers
-  ## E.g:
-  ## tlsCerts:
-  ##   argocd-1.example.com: |
-  ##     -----BEGIN CERTIFICATE-----
-  ##     (...)
-  ##     -----END CERTIFICATE-----
-  ##   argocd-2.example.com: |
-  ##     -----BEGIN CERTIFICATE-----
-  ##     (...)
-  ##     -----END CERTIFICATE-----
+  ## Argo CD repository TLS certificates
+  ## config.tlsCerts DEPRECATED. Moved to config.tls.certificates
+  ## Ref: https://github.com/argoproj/argo-helm/blob/main/charts/argo-cd/values.yaml#L422
   ##
-  tlsCerts: {}
+  tls:
+    ## @param config.tls.annotations Annotations to be added to argocd-tls-certs-cm configmap
+    ##
+    annotations: {}
+    ## @param config.tls.certificates TLS certificates used to verify the authenticity of the repository servers. Ref: https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/#repositories-using-self-signed-tls-certificates-or-are-signed-by-custom-ca
+    ##
+    certificates: {}
+    ## E.g:
+    ## certificates:
+    ##   argocd-1.example.com: |
+    ##     -----BEGIN CERTIFICATE-----
+    ##     (...)
+    ##     -----END CERTIFICATE-----
+    ##   argocd-2.example.com: |
+    ##     -----BEGIN CERTIFICATE-----
+    ##     (...)
+    ##     -----END CERTIFICATE-----
 
   ## @param config.gpgKeys GnuPG public keys to add to the keyring
   ## Note: Public keys should be exported with `gpg --export --armor <KEY>`

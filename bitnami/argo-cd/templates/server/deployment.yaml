@@ -236,7 +236,7 @@ spec:
               subPath: "custom.styles.css"
               name: custom-styles
             {{- end }}
-            {{- if .Values.config.tlsCerts }}
+            {{- if .Values.config.tls.certificates }}
             # Mounting into a path that will be read by Argo CD
             # Ref: https://argoproj.github.io/argo-cd/operator-manual/declarative-setup/#repositories-using-self-signed-tls-certificates-or-are-signed-by-custom-ca
             - mountPath: /app/config/tls
@@ -262,7 +262,7 @@ spec:
             name: {{ include "argocd.custom-styles.fullname" . }}
           name: custom-styles
         {{- end }}
-        {{- if .Values.config.tlsCerts }}
+        {{- if .Values.config.tls.certificates }}
         - configMap:
             name: argocd-tls-certs-cm
           name: tls-certs

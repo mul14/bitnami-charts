@@ -234,7 +234,7 @@ spec:
             # Ref: https://argoproj.github.io/argo-cd/operator-manual/declarative-setup/#ssh-known-host-public-keys
             - name: ssh-known-hosts
               mountPath: /app/config/ssh
-            {{- if .Values.config.tlsCerts }}
+            {{- if .Values.config.tls.certificates }}
             # Mounting into a path that will be read by Argo CD
             # Ref: https://argoproj.github.io/argo-cd/operator-manual/declarative-setup/#repositories-using-self-signed-tls-certificates-or-are-signed-by-custom-ca
             - mountPath: /app/config/tls
@@ -259,7 +259,7 @@ spec:
         - name: ssh-known-hosts
           configMap:
             name: argocd-ssh-known-hosts-cm
-        {{- if .Values.config.tlsCerts }}
+        {{- if .Values.config.tls.certificates }}
         - configMap:
             name: argocd-tls-certs-cm
           name: tls-certs

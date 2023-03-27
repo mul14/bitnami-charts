@@ -808,7 +808,8 @@ The command removes all the Kubernetes components associated with the chart and 
 | `config.createExtraKnownHosts`                 | Whether to create or not the extra known hosts configmap                                              | `true` |
 | `config.styles`                                | Custom CSS styles                                                                                     | `""`   |
 | `config.existingStylesConfigmap`               | Use an existing styles configmap                                                                      | `""`   |
-| `config.tlsCerts`                              | TLS certificates used to verify the authenticity of the repository servers                            | `{}`   |
+| `config.tls.annotations             `          | Annotations to be added to argocd-tls-certs-cm configmap                                              | `{}`   |
+| `config.tls.certificates`                      | TLS certificates used to verify the authenticity of the repository servers                            | `{}`   |
 | `config.gpgKeys`                               | GnuPG public keys to add to the keyring                                                               | `{}`   |
 | `config.secret.create`                         | Whether to create or not the secret                                                                   | `true` |
 | `config.secret.annotations`                    | General secret extra annotations                                                                      | `{}`   |

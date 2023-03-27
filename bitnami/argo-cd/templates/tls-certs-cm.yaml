@@ -1,4 +1,3 @@
-{{- if .Values.config.tlsCerts }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -13,9 +12,8 @@ metadata:
     # Mandatory label
     # Ref: https://argoproj.github.io/argo-cd/operator-manual/declarative-setup/#atomic-configuration
     app.kubernetes.io/part-of: argocd
-  {{- if .Values.commonAnnotations }}
-  annotations: {{- include "common.tplvalues.render" ( dict "value" .Values.commonAnnotations "context" $ ) | nindent 4 }}
+  {{- if .Values.config.tls.annotations }}
+  annotations: {{- include "common.tplvalues.render" ( dict "value" .Values.config.tls.annotations "context" $ ) | nindent 4 }}
   {{- end }}
 data:
-  {{- include "common.tplvalues.render" (dict "value" .Values.config.tlsCerts "context" $) | nindent 2 }}
-{{- end }}
+  {{- include "common.tplvalues.render" (dict "value" .Values.config.tls.certificates  "context" $) | nindent 2 }}

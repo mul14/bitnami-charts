@@ -100,7 +100,7 @@ spec:
           securityContext: {{- omit .Values.notifications.containerSecurityContext "enabled" | toYaml | nindent 12 }}
           {{- end }}
           volumeMounts:
-            {{- if .Values.config.tlsCerts }}
+            {{- if .Values.config.tls.certificates }}
             - mountPath: /app/config/tls
               name: tls-certs
             {{- end }}
@@ -110,7 +110,7 @@ spec:
           {{- include "common.tplvalues.render" (dict "value" .Values.notifications.extraVolumeMounts "context" $) | nindent 12 }}
           {{- end }}
       volumes:
-        {{- if .Values.config.tlsCerts }}
+        {{- if .Values.config.tls.certificates }}
         - name: tls-certs
           configMap:
             name: argocd-tls-certs-cm
